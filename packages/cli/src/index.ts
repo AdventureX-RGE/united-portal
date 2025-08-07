@@ -26,7 +26,7 @@ async function main(): Promise<void> {
     const port = await findAvailablePort()
     setEnv('PORT', port.toString())
 
-    serverStartSpinner.stop(pc.green(`United Portal`))
+    serverStartSpinner.stop(pc.blue(`United Portal is running on http://0.0.0.0:${port}`))
 
     outro(pc.green('You\'re all set!'));
 }
