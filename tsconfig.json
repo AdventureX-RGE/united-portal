@@ -2,6 +2,6 @@
   "files": [],
   "references": [
     { "path": "./packages/cli" },
-//    { "path": "./apps/portal" }
+    { "path": "./apps/portal" }
   ]
 }
