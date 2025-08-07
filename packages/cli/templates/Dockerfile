@@ -1,5 +1,5 @@
-# Base image with Bun preinstalled
-FROM oven/bun:1.0
+# Use latest Bun version which has better Next.js compatibility
+FROM oven/bun:latest
 
 # Set working directory inside the container
 WORKDIR /
@@ -13,11 +13,11 @@ WORKDIR /apps/portal
 # Install dependencies
 RUN bun install
 
-# Build the Next.js app
-RUN bunx next build
+# Build the Next.js app with Node.js compatibility mode
+RUN bun --bun run build
 
 # Expose the port
 EXPOSE 3000
 
 # Run Next.js in production mode
-CMD ["bunx", "next", "start", "-p", "3000", "-H", "0.0.0.0"]
+CMD ["bun", "--bun", "run", "start"]
