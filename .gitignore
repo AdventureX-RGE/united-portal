@@ -112,3 +112,5 @@ packages/cli/templates/.env.template
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.env
