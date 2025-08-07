@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  portal:
+    build: .
+    ports:
+      - "${PORT}:3000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: portal
+    ports:
+      - "5432:5432"

@@ -21,7 +21,8 @@
     "forceConsistentCasingInFileNames": true,
 
     // Output settings (optional if using Bun only for runtime)
-    "noEmit": true
+    "noEmit": true,
+    "types": ["bun-types"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
