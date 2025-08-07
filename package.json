@@ -6,9 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --fix"
   },
   "dependencies": {
+    "@antfu/eslint-config": "^5.2.0",
     "dotenv": "^17.2.1",
     "drizzle-orm": "^0.44.4",
     "next": "15.4.6",
