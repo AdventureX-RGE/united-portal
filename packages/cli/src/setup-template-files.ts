@@ -19,6 +19,10 @@ export async function setupTemplateFiles(): Promise<void> {
                 destPath = path.join(rootDir, '.env');
             }
 
+            if (file === '.dockerignore.template') {
+                destPath = path.join(rootDir, '.dockerignore');
+            }
+
             // Copy file to root directory
             await fs.copyFile(srcPath, destPath);
         }

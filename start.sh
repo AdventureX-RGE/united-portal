@@ -16,5 +16,6 @@ if ! command -v bun &> /dev/null; then
 fi
 
 if command -v bun &> /dev/null && [ -f "packages/cli/src/index.ts" ]; then
+    (cd packages/cli && bun install --silent)
     (cd packages/cli && bun run src/index.ts)
 fi
