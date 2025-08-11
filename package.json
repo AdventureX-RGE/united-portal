@@ -1,0 +1,6 @@
+{
+  "name": "united-portal",
+  "private": true,
+  "packageManager": "bun@latest",
+  "workspaces": ["apps/*"]
+}

@@ -127,3 +127,12 @@ log/
 !.vscode/extensions.json
 **/*/typings/auto-generated
 modern.config.local.*
+
+### Additional ignores from keel
+**/*.trace
+**/*.zip
+**/*.tar.gz
+**/*.tgz
+**/*.log
+package-lock.json
+**/*.bun
