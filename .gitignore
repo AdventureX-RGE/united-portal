@@ -103,17 +103,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# local env files
-packages/cli/templates/.env.template
-
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-/docker-compose.yml
-/Dockerfile
-/.env
-/.dockerignore
