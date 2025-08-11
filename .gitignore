@@ -109,3 +109,21 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+### Portal specific ignores
+.env.local
+.env.*.local
+.history
+.yarn-integrity
+.pnpm-store/
+.changeset/pre.json
+dist/
+release/
+output/
+output_resource/
+log/
+.vscode/**/*
+!.vscode/settings.json
+!.vscode/extensions.json
+**/*/typings/auto-generated
+modern.config.local.*
