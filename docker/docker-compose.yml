@@ -1,0 +1,49 @@
+services:
+  up-postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: portal
+      POSTGRES_USER: portal
+      POSTGRES_PASSWORD: portal
+    volumes:
+      - up-pg-data:/var/lib/postgresql/data
+    networks:
+      - up-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U app -d app" ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+  up-keel:
+    build:
+      context: ../
+      dockerfile: apps/keel/Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "3001:3001"
+    networks:
+      - up-network
+
+  up-portal:
+    build:
+      context: ../
+      dockerfile: apps/portal/Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    networks:
+      - up-network
+
+volumes:
+  up-pg-data:
+
+networks:
+  up-network:
+    driver: bridge
