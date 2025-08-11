@@ -32,11 +32,11 @@ services:
       context: ../
       dockerfile: apps/portal/Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:8080"
     depends_on:
-      backend:
+      up-keel:
         condition: service_started
-      postgres:
+      up-postgres:
         condition: service_healthy
     networks:
       - up-network
