@@ -1,5 +1,5 @@
 {
   "name": "united-portal",
   "private": true,
-  "workspaces": ["apps/*"]
+  "workspaces": ["apps/*", "packages/*"]
 }
