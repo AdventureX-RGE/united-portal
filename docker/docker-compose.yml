@@ -22,8 +22,12 @@ services:
       dockerfile: apps/preflight/Dockerfile
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - up-themes:/opt/themes
+      - up-widgets:/opt/widgets
     command: sh -c "bun install && bun run start"
     restart: "no"
+    networks:
+      - up-network
     depends_on:
       up-postgres:
         condition: service_healthy
@@ -60,6 +64,8 @@ services:
 
 volumes:
   up-pg-data:
+  up-themes:
+  up-widgets:
 
 networks:
   up-network:
