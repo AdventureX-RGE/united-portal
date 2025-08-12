@@ -1,5 +1,5 @@
 {
-  "name": "portal",
+  "name": "@united-portal/portal",
   "version": "0.1.0",
   "scripts": {
     "reset": "bunx rimraf node_modules ./**/node_modules",

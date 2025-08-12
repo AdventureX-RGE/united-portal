@@ -16,6 +16,18 @@ services:
       retries: 10
       start_period: 10s
 
+  up-preflight:
+    build:
+      context: ../
+      dockerfile: apps/preflight/Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: sh -c "bun install && bun run start"
+    restart: "no"
+    depends_on:
+      up-postgres:
+        condition: service_healthy
+
   up-keel:
     build:
       context: ../
@@ -26,6 +38,9 @@ services:
       - "3001:3001"
     networks:
       - up-network
+    depends_on:
+      up-preflight:
+        condition: service_completed_successfully
 
   up-portal:
     build:
@@ -34,6 +49,8 @@ services:
     ports:
       - "3000:8080"
     depends_on:
+      up-preflight:
+        condition: service_completed_successfully
       up-keel:
         condition: service_started
       up-postgres:
