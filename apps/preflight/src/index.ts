@@ -24,7 +24,9 @@ async function main() {
     const THEME_PORT = await findAvailableThemePort();
     console.log("Available Theme Port: ", THEME_PORT);
 
-    await $`docker run -d --name ${theme_docker_name} --network ${NET} --restart unless-stopped -p ${THEME_PORT}:8080 ${theme_docker_name}`;
+    const THEME_MAPLE_URL = `${process.env.MAPLE_URL}/theme/${theme.id}`
+
+    await $`docker run -d --name ${theme_docker_name} --network ${NET} --restart unless-stopped -e PROVIDER_PUBLIC_URL=${THEME_MAPLE_URL} ${theme_docker_name}`;
 
     console.log(`Theme Running (${theme_docker_name})`);
 

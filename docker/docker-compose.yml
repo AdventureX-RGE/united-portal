@@ -26,6 +26,8 @@ services:
       - up-widgets:/opt/widgets
     command: sh -c "bun install && bun run start"
     restart: "no"
+    env_file:
+      - ../.env
     networks:
       - up-network
     depends_on:
@@ -64,6 +66,8 @@ services:
       dockerfile: apps/portal/Dockerfile
     ports:
       - "3000:8080"
+    env_file:
+      - ../.env
     depends_on:
       up-preflight:
         condition: service_completed_successfully

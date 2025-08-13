@@ -1,4 +1,5 @@
 import type {LoaderFunctionArgs} from '@modern-js/runtime/router';
+import * as process from "node:process";
 
 export type DataLoaderRes = {
     providerList: Array<{
@@ -13,7 +14,7 @@ export const loader = async ({request}: LoaderFunctionArgs): Promise<DataLoaderR
     return {
         providerList: [{
             name: "provider",
-            entry: "http://localhost:41000/static/mf-manifest.json",
+            entry: `${process.env.MAPLE_URL}/theme/default/static/mf-manifest.json`,
             id: "provider/Image"
         }]
     }
