@@ -32,14 +32,26 @@ services:
       up-postgres:
         condition: service_healthy
 
+  up-maple:
+    build:
+      context: ../
+      dockerfile: apps/maple/Dockerfile
+    networks:
+      - up-network
+    ports:
+      - "3001:3000"
+    depends_on:
+      up-preflight:
+        condition: service_completed_successfully
+      up-postgres:
+        condition: service_healthy
+
   up-keel:
     build:
       context: ../
       dockerfile: apps/keel/Dockerfile
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - "3001:3001"
     networks:
       - up-network
     depends_on:
@@ -56,6 +68,8 @@ services:
       up-preflight:
         condition: service_completed_successfully
       up-keel:
+        condition: service_started
+      up-maple:
         condition: service_started
       up-postgres:
         condition: service_healthy

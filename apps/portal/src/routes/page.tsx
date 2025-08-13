@@ -1,96 +1,38 @@
-import { Helmet } from '@modern-js/runtime/head';
+import {loadRemote, registerRemotes, getInstance} from '@module-federation/modern-js/runtime';
+import {createLazyComponent} from '@module-federation/modern-js/react';
+
+import type {DataLoaderRes} from './page.data';
+import {useLoaderData} from '@modern-js/runtime/router';
+
+import {Helmet} from '@modern-js/runtime/head';
 import './index.css';
 
-const Index = () => (
-  <div className="container-box">
-    <Helmet>
-      <link
-        rel="icon"
-        type="image/x-icon"
-        href="https://lf3-static.bytednsdoc.com/obj/eden-cn/uhbfnupenuhf/favicon.ico"
-      />
-    </Helmet>
-    <main>
-      <div className="title">
-        Welcome to
-        <img
-          className="logo"
-          src="https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/modern-js-logo.svg"
-          alt="Modern.js Logo"
-        />
-        <p className="name">Modern.js</p>
-      </div>
-      <p className="description">
-        Get started by editing <code className="code">src/routes/page.tsx</code>
-      </p>
-      <div className="grid">
-        <a
-          href="https://modernjs.dev/guides/get-started/introduction.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="card"
-        >
-          <h2>
-            Guide
-            <img
-              className="arrow-right"
-              src="https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/arrow-right.svg"
-              alt="Guide"
-            />
-          </h2>
-          <p>Follow the guides to use all features of Modern.js.</p>
-        </a>
-        <a
-          href="https://modernjs.dev/tutorials/foundations/introduction.html"
-          target="_blank"
-          className="card"
-          rel="noreferrer"
-        >
-          <h2>
-            Tutorials
-            <img
-              className="arrow-right"
-              src="https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/arrow-right.svg"
-              alt="Tutorials"
-            />
-          </h2>
-          <p>Learn to use Modern.js to create your first application.</p>
-        </a>
-        <a
-          href="https://modernjs.dev/configure/app/usage.html"
-          target="_blank"
-          className="card"
-          rel="noreferrer"
-        >
-          <h2>
-            Config
-            <img
-              className="arrow-right"
-              src="https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/arrow-right.svg"
-              alt="Config"
-            />
-          </h2>
-          <p>Find all configuration options provided by Modern.js.</p>
-        </a>
-        <a
-          href="https://github.com/web-infra-dev/modern.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="card"
-        >
-          <h2>
-            GitHub
-            <img
-              className="arrow-right"
-              src="https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/arrow-right.svg"
-              alt="Github"
-            />
-          </h2>
-          <p>View the source code on GitHub; feel free to contribute.</p>
-        </a>
-      </div>
-    </main>
-  </div>
-);
+const Index = () => {
+    const dataLoader = useLoaderData() as DataLoaderRes;
+
+    registerRemotes(dataLoader.providerList)
+
+    const DynamicRemoteSSRComponents = dataLoader.providerList.map(item => {
+        const {id} = item;
+        const Com = createLazyComponent({
+            instance: getInstance(),
+            loader: () => loadRemote(id),
+            loading: 'loading...',
+            fallback: ({error}) => {
+                if (error instanceof Error && error.message.includes('not exist')) {
+                    return <div>fallback - not existed id</div>;
+                }
+                return <div>fallback</div>;
+            },
+        });
+        return <Com key={id}/>
+    })
+
+    return (
+        <div className="container-box">
+            {DynamicRemoteSSRComponents}
+        </div>
+    );
+}
 
 export default Index;

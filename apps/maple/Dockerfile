@@ -5,16 +5,16 @@ WORKDIR /app
 # Copy workspace configuration
 COPY package.json bun.lockb* ./
 
-# Copy keel app package.json for workspace resolution
-COPY apps/keel/package.json ./apps/keel/
-COPY apps/keel/bun.lockb* ./apps/keel/
+# Copy maple app package.json for workspace resolution
+COPY apps/maple/package.json ./apps/maple/
+COPY apps/maple/bun.lockb* ./apps/maple/
 
 RUN bun install
 
 # monorepo root
 COPY . .
 
-WORKDIR /app/apps/keel
+WORKDIR /app/apps/maple
 
 ENV NODE_ENV=production
 
@@ -30,7 +30,7 @@ FROM gcr.io/distroless/base
 
 WORKDIR /app
 
-COPY --from=build /app/apps/keel/server server
+COPY --from=build /app/apps/maple/server server
 
 ENV NODE_ENV=production
 

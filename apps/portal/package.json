@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@modern-js/runtime": "2.68.8",
+    "@module-federation/modern-js": "^0.18.1",
     "dotenv": "^17.2.1",
     "drizzle-orm": "^0.44.4",
     "pg": "^8.16.3",
