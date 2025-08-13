@@ -1,31 +1,51 @@
 {
-  "name": "portal",
+  "name": "@united-portal/portal",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "reset": "bunx rimraf node_modules ./**/node_modules",
+    "dev": "modern dev",
+    "build": "modern build",
+    "start": "modern start",
+    "serve": "modern serve",
+    "new": "modern new",
+    "lint": "biome check",
+    "prepare": "simple-git-hooks",
+    "upgrade": "modern upgrade"
+  },
+  "engines": {
+    "node": ">=16.18.1"
+  },
+  "lint-staged": {
+    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+      "biome check --files-ignore-unknown=true"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "bunx lint-staged"
   },
   "dependencies": {
+    "@modern-js/runtime": "2.68.8",
+    "@module-federation/modern-js": "^0.18.1",
+    "dotenv": "^17.2.1",
     "drizzle-orm": "^0.44.4",
-    "next": "15.4.6",
     "pg": "^8.16.3",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "dotenv": "^17.2.1",
+    "@biomejs/biome": "1.9.4",
+    "@modern-js/app-tools": "2.68.8",
+    "@modern-js/tsconfig": "2.68.8",
+    "@types/jest": "~29.2.4",
+    "@types/node": "~18.11.9",
+    "@types/pg": "^8.15.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "~18.3.1",
     "drizzle-kit": "^0.31.4",
-    "eslint": "^9",
-    "eslint-config-next": "15.4.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "lint-staged": "~15.4.0",
+    "rimraf": "^6.0.1",
+    "simple-git-hooks": "^2.11.1",
+    "tsx": "^4.20.4",
+    "typescript": "~5.7.3"
   }
 }

@@ -1,0 +1,90 @@
+services:
+  up-postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: portal
+      POSTGRES_USER: portal
+      POSTGRES_PASSWORD: portal
+    volumes:
+      - up-pg-data:/var/lib/postgresql/data
+    networks:
+      - up-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U app -d app" ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+  up-preflight:
+    build:
+      context: ../
+      dockerfile: apps/preflight/Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - up-themes:/opt/themes
+      - up-widgets:/opt/widgets
+    command: sh -c "bun install && bun run start"
+    restart: "no"
+    env_file:
+      - ../.env
+    networks:
+      - up-network
+    depends_on:
+      up-postgres:
+        condition: service_healthy
+
+  up-maple:
+    build:
+      context: ../
+      dockerfile: apps/maple/Dockerfile
+    networks:
+      - up-network
+    ports:
+      - "3001:3000"
+    depends_on:
+      up-preflight:
+        condition: service_completed_successfully
+      up-postgres:
+        condition: service_healthy
+
+  up-keel:
+    build:
+      context: ../
+      dockerfile: apps/keel/Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - up-network
+    depends_on:
+      up-preflight:
+        condition: service_completed_successfully
+
+  up-portal:
+    build:
+      context: ../
+      dockerfile: apps/portal/Dockerfile
+    ports:
+      - "3000:8080"
+    env_file:
+      - ../.env
+    depends_on:
+      up-preflight:
+        condition: service_completed_successfully
+      up-keel:
+        condition: service_started
+      up-maple:
+        condition: service_started
+      up-postgres:
+        condition: service_healthy
+    networks:
+      - up-network
+
+volumes:
+  up-pg-data:
+  up-themes:
+  up-widgets:
+
+networks:
+  up-network:
+    driver: bridge

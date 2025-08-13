@@ -3,6 +3,7 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
+.idea/
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
@@ -79,19 +80,18 @@ fabric.properties
 
 ### NextJS template
 # dependencies
-/node_modules
-/.pnp
+node_modules/
+.pnp
 .pnp.js
 
 # testing
-/coverage
+coverage/
 
 # next.js
-/.next/
-/out/
+.next/
 
 # production
-/build
+build/
 
 # misc
 .DS_Store
@@ -103,9 +103,6 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# local env files
-.env*.local
-
 # vercel
 .vercel
 
@@ -113,3 +110,29 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+### Portal specific ignores
+.env
+.env.*.local
+.history
+.yarn-integrity
+.pnpm-store/
+.changeset/pre.json
+dist/
+release/
+output/
+output_resource/
+log/
+.vscode/**/*
+!.vscode/settings.json
+!.vscode/extensions.json
+**/*/typings/auto-generated
+modern.config.local.*
+
+### Additional ignores from keel
+**/*.trace
+**/*.zip
+**/*.tar.gz
+**/*.tgz
+**/*.log
+package-lock.json
+**/*.bun
