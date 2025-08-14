@@ -2,9 +2,9 @@ services:
   up-postgres:
     image: postgres:15
     environment:
-      POSTGRES_DB: portal
-      POSTGRES_USER: portal
-      POSTGRES_PASSWORD: portal
+      POSTGRES_DB: env
+      POSTGRES_USER: env
+      POSTGRES_PASSWORD: env
     volumes:
       - up-pg-data:/var/lib/postgresql/data
     networks:

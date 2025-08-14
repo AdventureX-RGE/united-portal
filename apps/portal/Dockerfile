@@ -5,20 +5,20 @@ WORKDIR /app
 # Copy workspace configuration
 COPY package.json bun.lockb* ./
 
-# Copy portal app package.json for workspace resolution
-COPY apps/portal/package.json ./apps/portal/
-COPY apps/portal/bun.lockb* ./apps/portal/
+# Copy env app package.json for workspace resolution
+COPY apps/portal/package.json ./apps/env/
+COPY apps/portal/bun.lockb* ./apps/env/
 
-# Install all dependencies (workspace + portal)
+# Install all dependencies (workspace + env)
 RUN npm i -g bun && bun install --frozen-lockfile
 
 # Copy the entire source code
 COPY . .
 
-# Change to portal directory for build
-WORKDIR /app/apps/portal
+# Change to env directory for build
+WORKDIR /app/apps/env
 
-# Build the portal app
+# Build the env app
 RUN npx modern deploy
 
 # Expose port

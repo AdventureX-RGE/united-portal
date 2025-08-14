@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "united-portal",
+      "name": "united-env",
       "dependencies": {
         "dotenv": "^17.2.1",
         "drizzle-orm": "^0.44.4",
@@ -15,7 +15,7 @@
       },
     },
     "apps/keel": {
-      "name": "@united-portal/keel",
+      "name": "@united-env/keel",
       "version": "1.0.50",
       "dependencies": {
         "elysia": "latest",
@@ -25,7 +25,7 @@
       },
     },
     "apps/maple": {
-      "name": "@united-portal/maple",
+      "name": "@united-env/maple",
       "version": "1.0.50",
       "dependencies": {
         "@elysiajs/cors": "^1.3.3",
@@ -35,8 +35,8 @@
         "bun-types": "latest",
       },
     },
-    "apps/portal": {
-      "name": "@united-portal/portal",
+    "apps/env": {
+      "name": "@united-env/env",
       "version": "0.1.0",
       "dependencies": {
         "@modern-js/runtime": "2.68.8",
@@ -61,7 +61,7 @@
       },
     },
     "apps/preflight": {
-      "name": "@united-portal/preflight",
+      "name": "@united-env/preflight",
       "devDependencies": {
         "@types/bun": "latest",
       },
@@ -70,7 +70,7 @@
       },
     },
     "packages/@shared/db-schema": {
-      "name": "@united-portal/db-schema",
+      "name": "@united-env/db-schema",
       "devDependencies": {
         "@types/bun": "latest",
       },
@@ -79,7 +79,7 @@
       },
     },
     "packages/apex": {
-      "name": "@united-portal/apex",
+      "name": "@united-env/apex",
       "devDependencies": {
         "@types/bun": "latest",
       },
@@ -88,10 +88,10 @@
       },
     },
     "packages/internal-kit": {
-      "name": "@united-portal/internal-kit",
+      "name": "@united-env/internal-kit",
       "devDependencies": {
         "@types/bun": "latest",
-        "@united-portal/db-schema": "workspace:*",
+        "@united-env/db-schema": "workspace:*",
       },
       "peerDependencies": {
         "typescript": "^5",
@@ -781,19 +781,19 @@
 
     "@types/yargs-parser": ["@types/yargs-parser@21.0.3", "", {}, "sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ=="],
 
-    "@united-portal/apex": ["@united-portal/apex@workspace:packages/apex"],
+    "@united-env/apex": ["@united-env/apex@workspace:packages/apex"],
 
-    "@united-portal/db-schema": ["@united-portal/db-schema@workspace:packages/@shared/db-schema"],
+    "@united-env/db-schema": ["@united-env/db-schema@workspace:packages/@shared/db-schema"],
 
-    "@united-portal/internal-kit": ["@united-portal/internal-kit@workspace:packages/internal-kit"],
+    "@united-env/internal-kit": ["@united-env/internal-kit@workspace:packages/internal-kit"],
 
-    "@united-portal/keel": ["@united-portal/keel@workspace:apps/keel"],
+    "@united-env/keel": ["@united-env/keel@workspace:apps/keel"],
 
-    "@united-portal/maple": ["@united-portal/maple@workspace:apps/maple"],
+    "@united-env/maple": ["@united-env/maple@workspace:apps/maple"],
 
-    "@united-portal/portal": ["@united-portal/portal@workspace:apps/portal"],
+    "@united-env/env": ["@united-env/env@workspace:apps/env"],
 
-    "@united-portal/preflight": ["@united-portal/preflight@workspace:apps/preflight"],
+    "@united-env/preflight": ["@united-env/preflight@workspace:apps/preflight"],
 
     "@vercel/nft": ["@vercel/nft@0.27.3", "", { "dependencies": { "@mapbox/node-pre-gyp": "^1.0.5", "@rollup/pluginutils": "^4.0.0", "acorn": "^8.6.0", "acorn-import-attributes": "^1.9.5", "async-sema": "^3.1.1", "bindings": "^1.4.0", "estree-walker": "2.0.2", "glob": "^7.1.3", "graceful-fs": "^4.2.9", "micromatch": "^4.0.2", "node-gyp-build": "^4.2.2", "resolve-from": "^5.0.0" }, "bin": { "nft": "out/cli.js" } }, "sha512-oySTdDSzUAFDXpsSLk9Q943o+/Yu/+TCFxnehpFQEf/3khi2stMpTHPVNwFdvZq/Z4Ky93lE+MGHpXCRpMkSCA=="],
 
