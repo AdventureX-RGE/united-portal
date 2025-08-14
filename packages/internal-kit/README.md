@@ -1,4 +1,4 @@
-# interal-kit
+# internal-kit
 
 To install dependencies:
 

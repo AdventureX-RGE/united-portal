@@ -1,5 +1,5 @@
 {
-  "name": "@united-portal/interal-kit",
+  "name": "@united-portal/internal-kit",
   "module": "src/index.ts",
   "type": "module",
   "private": true,
