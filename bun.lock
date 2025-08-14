@@ -63,6 +63,15 @@
         "typescript": "^5",
       },
     },
+    "packages/@shared/db-schema": {
+      "name": "@united-portal/db-schema",
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
     "packages/apex": {
       "name": "@united-portal/apex",
       "devDependencies": {
@@ -72,10 +81,11 @@
         "typescript": "^5",
       },
     },
-    "packages/interal-kit": {
-      "name": "interal-kit",
+    "packages/internal-kit": {
+      "name": "@united-portal/internal-kit",
       "devDependencies": {
         "@types/bun": "latest",
+        "@united-portal/db-schema": "workspace:*",
       },
       "peerDependencies": {
         "typescript": "^5",
@@ -767,6 +777,10 @@
 
     "@united-portal/apex": ["@united-portal/apex@workspace:packages/apex"],
 
+    "@united-portal/db-schema": ["@united-portal/db-schema@workspace:packages/@shared/db-schema"],
+
+    "@united-portal/internal-kit": ["@united-portal/internal-kit@workspace:packages/internal-kit"],
+
     "@united-portal/keel": ["@united-portal/keel@workspace:apps/keel"],
 
     "@united-portal/maple": ["@united-portal/maple@workspace:apps/maple"],
@@ -1370,8 +1384,6 @@
     "inherits": ["inherits@2.0.4", "", {}, "sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ=="],
 
     "ini": ["ini@1.3.8", "", {}, "sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew=="],
-
-    "interal-kit": ["interal-kit@workspace:packages/interal-kit"],
 
     "invariant": ["invariant@2.2.4", "", { "dependencies": { "loose-envify": "^1.0.0" } }, "sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA=="],
 
