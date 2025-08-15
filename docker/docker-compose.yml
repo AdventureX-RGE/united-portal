@@ -1,16 +1,16 @@
 services:
   up-postgres:
-    image: postgres:15
+    image: postgres:17
     environment:
-      POSTGRES_DB: env
-      POSTGRES_USER: env
-      POSTGRES_PASSWORD: env
+      POSTGRES_DB: portal
+      POSTGRES_USER: portal
+      POSTGRES_PASSWORD: portal
     volumes:
       - up-pg-data:/var/lib/postgresql/data
     networks:
-      - up-db-network
+      - up-network
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U app -d app" ]
+      test: [ "CMD-SHELL", "pg_isready -U portal -d portal" ]
       interval: 5s
       timeout: 3s
       retries: 10
@@ -30,7 +30,6 @@ services:
       - ../.env
     networks:
       - up-network
-      - up-db-network
     depends_on:
       up-postgres:
         condition: service_healthy
@@ -41,7 +40,6 @@ services:
       dockerfile: apps/maple/Dockerfile
     networks:
       - up-network
-      - up-db-network
     ports:
       - "3001:3000"
     depends_on:
@@ -58,7 +56,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - up-network
-      - up-db-network
     depends_on:
       up-preflight:
         condition: service_completed_successfully
@@ -82,7 +79,6 @@ services:
         condition: service_healthy
     networks:
       - up-network
-      - up-db-network
 
 volumes:
   up-pg-data:
@@ -92,6 +88,3 @@ volumes:
 networks:
   up-network:
     driver: bridge
-  up-db-network:
-    driver: bridge
-    internal: true

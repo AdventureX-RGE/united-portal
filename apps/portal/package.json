@@ -24,11 +24,12 @@
     "pre-commit": "bunx lint-staged"
   },
   "dependencies": {
+    "@modern-js/plugin-router-v7": "^2.68.9",
     "@modern-js/runtime": "2.68.8",
     "@module-federation/modern-js": "^0.18.1",
+    "@united-portal/internal-kit": "workspace:*",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "@united-portal/internal-kit": "workspace:*"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

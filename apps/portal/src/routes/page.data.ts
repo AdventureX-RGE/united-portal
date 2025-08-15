@@ -1,5 +1,7 @@
 import type {LoaderFunctionArgs} from '@modern-js/runtime/router';
 import * as process from "node:process";
+import { redirect } from '@modern-js/runtime/router';
+import {EnvAB} from "@united-portal/internal-kit";
 
 export type DataLoaderRes = {
     providerList: Array<{
@@ -10,7 +12,11 @@ export type DataLoaderRes = {
 }
 
 
-export const loader = async ({request}: LoaderFunctionArgs): Promise<DataLoaderRes> => {
+export const loader = async ({request}: LoaderFunctionArgs) => {
+    if (!(await EnvAB.portalHasSetup())) {
+        return redirect("/setup")
+    }
+
     return {
         providerList: [{
             name: "provider",
