@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "portal",
+      "name": "env",
       "dependencies": {
         "@modern-js/runtime": "2.68.8",
         "react": "^18.3.1",

@@ -9,7 +9,10 @@ COPY package.json bun.lockb* ./
 COPY apps/portal/package.json ./apps/portal/
 COPY apps/portal/bun.lockb* ./apps/portal/
 
-# Install all dependencies (workspace + portal)
+# Copy local packages
+COPY packages/internal-kit ./packages/internal-kit
+
+# Install all dependencies (workspace + env)
 RUN npm i -g bun && bun install --frozen-lockfile
 
 # Copy the entire source code

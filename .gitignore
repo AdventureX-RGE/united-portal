@@ -111,7 +111,7 @@ yarn-error.log*
 next-env.d.ts
 
 ### Portal specific ignores
-.env
+.env.local
 .env.*.local
 .history
 .yarn-integrity

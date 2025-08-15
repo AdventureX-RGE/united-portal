@@ -1,0 +1,4 @@
+services:
+  up-postgres:
+    ports:
+      - "5434:5432"
