@@ -19,4 +19,13 @@ export default defineConfig({
         moduleFederationPlugin(),
         routerPlugin(),
     ],
+    tools: {
+        rspack: {
+            resolve: {
+                fallback: {
+                    'pg-native': false,
+                },
+            },
+        },
+    },
 });
