@@ -29,7 +29,8 @@
     "@module-federation/modern-js": "^0.18.1",
     "@united-portal/internal-kit": "workspace:*",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "@modern-js/plugin-tailwindcss": "2.68.8"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -44,6 +45,7 @@
     "rimraf": "^6.0.1",
     "simple-git-hooks": "^2.11.1",
     "tsx": "^4.20.4",
-    "typescript": "~5.7.3"
+    "typescript": "~5.7.3",
+    "tailwindcss": "~3.4.14"
   }
 }
