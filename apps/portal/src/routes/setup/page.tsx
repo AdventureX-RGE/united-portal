@@ -18,7 +18,7 @@ export default () => {
                 if (error.message.includes('not exist')) {
                     return <div>fallback - not existed id</div>;
                 }
-                return <div>fallback</div>;
+                return (<></>);
             },
         });
         return <Com key={id}/>
