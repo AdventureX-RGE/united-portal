@@ -4,7 +4,6 @@
     "": {
       "name": "united-env",
       "dependencies": {
-        "@types/react": "^19.1.10",
         "dotenv": "^17.2.1",
         "drizzle-orm": "^0.44.4",
         "pg": "^8.16.3",
@@ -76,6 +75,10 @@
     },
     "packages/apex": {
       "name": "@united-portal/apex",
+      "version": "0.1.0",
+      "dependencies": {
+        "@types/react": "^19.1.10",
+      },
       "devDependencies": {
         "@types/bun": "latest",
       },

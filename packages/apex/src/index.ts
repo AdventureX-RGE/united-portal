@@ -1,1 +1,1 @@
-export * from './types/theme/textfield'
+export type { TextFieldProps } from './types/theme/textfield'
