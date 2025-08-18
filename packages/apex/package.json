@@ -16,7 +16,7 @@
 
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "prepare": "npm run build"
+    "postinstall": "bun run build"
   },
 
   "peerDependencies": {
