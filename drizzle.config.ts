@@ -1,13 +1,16 @@
-import 'dotenv/config';
+import { config } from 'dotenv';
 import { defineConfig } from 'drizzle-kit';
+
+config({ path: '.env' });
+config({ path: '.env.local', override: true});
 
 export default defineConfig({
   out: './drizzle',
   schema: './packages/internal-kit/src/db/schemas',
   dialect: 'postgresql',
   dbCredentials: {
-    url: process.env.MODE!.toLowerCase() == 'production' ?
+    url: (process.env.MODE!.toLowerCase() == 'production' ?
         process.env.DATABASE_URL! :
-        "postgresql://portal:portal@127.0.0.1:5434/portal",
+        "postgresql://portal:portal@127.0.0.1:5434/portal"),
   },
 });
